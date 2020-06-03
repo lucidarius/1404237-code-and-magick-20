@@ -39,11 +39,6 @@ window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-  var rectX = CLOUD_X + GAP_BETWEEN + (GAP_BETWEEN + BAR_WIDTH) * i;
-  var rectY = CLOUD_HEIGHT - GAP - ((MAX_BAR_HEIGHT * times[i]) / maxTime) - GAP;
-  var rectLength = (MAX_BAR_HEIGHT * times[i] / maxTime) - GAP;
-  var maxTime = getMaxElement(times);
-
   ctx.fillStyle = '#000';
   // Блок с текстом
   ctx.font = '16px PT Mono';
@@ -53,6 +48,10 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.fillText('Список результатов:', CLOUD_X + GAP * 3, CLOUD_Y + GAP * 3 + FONT_GAP);
 
   for (var i = 0; i < players.length; i++) {
+    var rectX = CLOUD_X + GAP_BETWEEN + (GAP_BETWEEN + BAR_WIDTH) * i;
+    var maxTime = getMaxElement(times);
+    var rectY = CLOUD_HEIGHT - GAP - ((MAX_BAR_HEIGHT * times[i]) / maxTime) - GAP;
+    var rectLength = (MAX_BAR_HEIGHT * times[i] / maxTime) - GAP;
     ctx.fillStyle = '#000';
     ctx.fillText(players[i], CLOUD_X + GAP_BETWEEN + (GAP_BETWEEN + BAR_WIDTH) * i, CLOUD_Y_BOTTOM - GAP);
     ctx.fillText(Math.floor(times[i]), CLOUD_X + GAP_BETWEEN + (GAP_BETWEEN + BAR_WIDTH) * i, CLOUD_Y_BOTTOM - (MAX_BAR_HEIGHT * times[i]) / maxTime - GAP * 4);
